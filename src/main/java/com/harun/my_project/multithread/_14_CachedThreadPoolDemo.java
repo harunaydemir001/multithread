@@ -7,7 +7,7 @@ public class _14_CachedThreadPoolDemo {
     public static void main(String[] args) {
         try (ExecutorService executorService = Executors.newCachedThreadPool()) {
             for (int i = 0; i < 1000; i++) {
-                executorService.execute(new Work(i));
+                executorService.execute(new TaskOne(i));
             }
         }
     }
