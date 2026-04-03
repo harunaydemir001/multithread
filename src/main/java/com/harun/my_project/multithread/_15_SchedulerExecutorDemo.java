@@ -14,7 +14,7 @@ public class _15_SchedulerExecutorDemo {
                 scheduledExecutorService.shutdownNow();
             }
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            scheduledExecutorService.shutdownNow();
         }
     }
 
