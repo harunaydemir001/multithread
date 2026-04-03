@@ -13,24 +13,19 @@ public class _20_ConcurrentCache {
                 String key = "Key @ " + threadNum;
                 for (int j = 0; j < 3; j++) {
                     String value = getCachedValue(key);
-                    System.out.println("Thread: " + Thread.currentThread().getName() + ": Key = " + key + ", value = " + value);
+                    System.out.println("Thread: " + Thread.currentThread().getName()
+                            + ": Key = " + key + ", value = " + value);
                 }
             }).start();
         }
     }
 
     private static String getCachedValue(final String key) {
-        String value = cache.get(key);
-        if (value == null) {
-            value = compute(key);
-            cache.put(key, value);
-            System.out.println("add cache: " + key);
-        }
-        return value;
+        return cache.computeIfAbsent(key, _20_ConcurrentCache::compute);
     }
 
     private static String compute(final String key) {
-        System.out.println(key + " not present int the cache, so going to compute!");
+        System.out.println(key + " not present in the cache, so going to compute!");
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
